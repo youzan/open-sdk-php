@@ -1,0 +1,7 @@
+.idea
+vendor
+*.log
+Thumbs.db
+.DS_Store
+test.php
+composer.lock

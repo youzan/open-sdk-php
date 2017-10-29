@@ -1,0 +1,28 @@
+{
+    "name": "xu42/open-sdk",
+    "description": "有赞云服务端SDK",
+    "type": "library",
+    "keywords": [
+        "youzan",
+        "youzanyun",
+        "open-sdk"
+    ],
+    "homepage": "https://github.com/youzan/open-sdk-php",
+    "authors": [
+        {
+            "name": "xu42",
+            "role": "Developer",
+            "homepage": "https://github.com/xu42"
+        }
+    ],
+    "require": {
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Youzan\\Open\\": "src/Open"
+        }
+    },
+    "minimum-stability": "stable",
+    "license": "MIT"
+}
