@@ -1,6 +1,6 @@
 {
-    "name": "xu42/open-sdk",
-    "description": "有赞云服务端SDK",
+    "name": "youzan/open-sdk",
+    "description": "Youzan Open SDK",
     "type": "library",
     "keywords": [
         "youzan",

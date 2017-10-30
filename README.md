@@ -12,7 +12,7 @@ Youzan Open SDK
 Via Composer
 
 ``` bash
-$ composer require xu42/open-sdk
+$ composer require youzan/open-sdk
 ```
 
 
@@ -132,9 +132,9 @@ If you discover any security related issues, please using the issue tracker.
 
 The MIT License. Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/xu42/open-sdk.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/youzan/open-sdk.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/xu42/open-sdk.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/youzan/open-sdk.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/xu42/open-sdk
-[link-downloads]: https://packagist.org/packages/xu42/open-sdk
+[link-packagist]: https://packagist.org/packages/youzan/open-sdk
+[link-downloads]: https://packagist.org/packages/youzan/open-sdk
