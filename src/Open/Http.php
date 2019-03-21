@@ -6,30 +6,26 @@ class Http
 {
     private static $boundary = '';
 
-    public static function get($url, $params)
-    {
-        $url = $url . '?' . http_build_query($params);
-        return self::http($url, 'GET');
-    }
-
     public static function post($url, $params, $files = array())
     {
         $headers = array();
+
         if (!$files) {
-            $body = http_build_query($params);
+            $headers[] = "Content-Type: application/json";
+            $postFields = $params;
         } else {
-            $body = self::buildHttpQueryMulti($params, $files);
+            $postFields = self::buildHttpQueryMulti($params, $files);
             $headers[] = "Content-Type: multipart/form-data; boundary=" . self::$boundary;
         }
-        return self::http($url, 'POST', $body, $headers);
+
+        return self::http($url, $postFields, $headers);
     }
 
-    private static function http($url, $method, $postFields = NULL, $headers = array())
+    private static function http($url, $postFields = NULL, $headers = array())
     {
         $ci = curl_init();
 
-        curl_setopt($ci, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
-        curl_setopt($ci, CURLOPT_USERAGENT, 'X-YZ-Client 2.0.0 - PHP');
+        curl_setopt($ci, CURLOPT_USERAGENT, 'YZY-Open-Client bifrost - PHP');
         curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ci, CURLOPT_TIMEOUT, 30);
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
@@ -37,24 +33,16 @@ class Http
         curl_setopt($ci, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ci, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ci, CURLOPT_HEADER, FALSE);
-
-        switch ($method) {
-            case 'POST':
-                curl_setopt($ci, CURLOPT_POST, TRUE);
-                if (!empty($postFields)) {
-                    curl_setopt($ci, CURLOPT_POSTFIELDS, $postFields);
-                }
-                break;
-        }
-
+        curl_setopt($ci, CURLOPT_POST, TRUE);
         curl_setopt($ci, CURLOPT_URL, $url);
         curl_setopt($ci, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE);
 
-        $response = curl_exec($ci);
-        $httpCode = curl_getinfo($ci, CURLINFO_HTTP_CODE);
-        $httpInfo = curl_getinfo($ci);
+        if (!empty($postFields)) {
+            curl_setopt($ci, CURLOPT_POSTFIELDS, json_encode($postFields));
+        }
 
+        $response = curl_exec($ci);
         curl_close($ci);
         return $response;
     }
@@ -62,8 +50,6 @@ class Http
     private static function buildHttpQueryMulti($params, $files)
     {
         if (!$params) return '';
-
-        $pairs = array();
 
         self::$boundary = $boundary = uniqid('------------------');
         $MPBoundary = '--' . $boundary;
