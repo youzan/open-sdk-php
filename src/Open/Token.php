@@ -2,7 +2,6 @@
 
 namespace Youzan\Open;
 
-use Exception;
 
 class Token
 {
@@ -11,7 +10,7 @@ class Token
     private $accessToken;
     private $refreshToken;
 
-    private static $requestUrl = 'https://open.youzan.com/oauth/token';
+    private static $requestUrl = 'https://api.youzanyun.com/auth/token';
 
     public function __construct($clientId, $clientSecret, $accessToken = null, $refreshToken = null)
     {
@@ -21,29 +20,23 @@ class Token
         $this->refreshToken = $refreshToken;
     }
 
-    /**
-     * 获取access_token
-     *
-     * @param $type
-     * @param array $keys
-     *
-     * @return mixed
-     */
+
     public function getToken($type, $keys = array())
     {
         $params = array();
         $params['client_id'] = $this->clientId;
         $params['client_secret'] = $this->clientSecret;
-        if ($type === 'oauth') {
-            $params['grant_type'] = 'authorization_code';
+        if ($type === 'authorization_code') { // 工具型应用获取 token
+            $params['authorize_type'] = 'authorization_code';
             $params['code'] = $keys['code'];
             $params['redirect_uri'] = $keys['redirect_uri'];
-        } elseif ($type === 'refresh_token') {
-            $params['grant_type'] = 'refresh_token';
+        } elseif ($type === 'refresh_token') { // 工具型应用刷新 token
+            $params['authorize_type'] = 'refresh_token';
             $params['refresh_token'] = $keys['refresh_token'];
-        } elseif ($type === 'self') {
-            $params['grant_type'] = 'silent';
-            $params['kdt_id'] = $keys['kdt_id'];
+            $params['scope'] = 'scope';
+        } elseif ($type === 'silent') { // 自用型应用获取 token
+            $params['authorize_type'] = 'silent';
+            $params['grant_id'] = $keys['kdt_id'];
         } elseif ($type === 'platform_init') {
             $params['grant_type'] = 'authorize_platform';
         } elseif ($type === 'platform') {
@@ -59,7 +52,9 @@ class Token
     private function parseResponse($responseData)
     {
         $data = json_decode($responseData, true);
-        if (null === $data) throw new Exception('response invalid, data: ' . $responseData);
+        if (isset($data['success']) && $data['success']) {
+            return $data['data'];
+        }
         return $data;
     }
 }

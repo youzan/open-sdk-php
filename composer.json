@@ -7,7 +7,7 @@
         "youzanyun",
         "open-sdk"
     ],
-    "homepage": "https://github.com/youzan/open-sdk-php",
+    "homepage": "https://github.com/youzan/youzan-sdk-php",
     "authors": [
         {
             "name": "xu42",
@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
