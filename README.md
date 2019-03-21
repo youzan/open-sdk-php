@@ -7,6 +7,15 @@
 Youzan Open SDK
 
 
+## NOTICE
+
+有赞开放平台升级为有赞云，开发者需要进行迁移工作，此为开放平台版本SDK(老版)。请尽快迁移。
+
+- [开放平台SDK 代号:carmen](../../tree/carmen)
+- [兼容版本SDK 代号:compatible](../../tree/compatible)
+- [有赞云版SDK 代号:bifrost](../../tree/bifrost)
+
+
 ## Install
 
 Via Composer
