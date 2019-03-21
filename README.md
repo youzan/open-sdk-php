@@ -11,6 +11,9 @@ Youzan Open SDK
 
 有赞开放平台升级为有赞云，开发者需要进行迁移工作，此为兼容版本SDK，理论上可以无痛迁移(只需更改引入包版本)，但依然强烈建议你在生产环境迁移前进行充分的测试！
 
+- [开放平台SDK 代号:carmen](../../tree/carmen)
+- [兼容版本SDK 代号:compatible](../../tree/compatible)
+- [有赞云版SDK 代号:bifrost](../../tree/bifrost)
 
 ## Install
 
