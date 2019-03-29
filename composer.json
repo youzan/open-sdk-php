@@ -1,5 +1,5 @@
 {
-    "name": "xu42/open-sdk",
+    "name": "youzanyun/open-sdk",
     "description": "有赞云服务端SDK",
     "type": "library",
     "keywords": [
@@ -7,12 +7,12 @@
         "youzanyun",
         "open-sdk"
     ],
-    "homepage": "https://github.com/youzan/youzan-sdk-php",
+    "homepage": "https://github.com/youzanyun/open-sdk-php",
     "authors": [
         {
-            "name": "xu42",
+            "name": "youzanyun",
             "role": "Developer",
-            "homepage": "https://github.com/xu42"
+            "homepage": "https://github.com/youzanyun"
         }
     ],
     "require": {
