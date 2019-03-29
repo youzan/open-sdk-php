@@ -22,11 +22,11 @@ Via Composer
 
 ``` bash
 // 有赞云版SDK 保持最新
-$ composer require xu42/open-sdk "dev-bifrost"
+$ composer require youzanyun/open-sdk "dev-bifrost"
 
 or
 // 有赞云版SDK 默认(版本号>2)
-$ composer require xu42/open-sdk
+$ composer require youzanyun/open-sdk
 ```
 
 
@@ -146,9 +146,9 @@ If you discover any security related issues, please using the issue tracker.
 
 The MIT License. Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/xu42/open-sdk.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/youzanyun/open-sdk.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/xu42/open-sdk.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/youzanyun/open-sdk.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/xu42/open-sdk
-[link-downloads]: https://packagist.org/packages/xu42/open-sdk
+[link-packagist]: https://packagist.org/packages/youzanyun/open-sdk
+[link-downloads]: https://packagist.org/packages/youzanyun/open-sdk
