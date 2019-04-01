@@ -64,36 +64,12 @@ $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($typ
 var_dump($accessToken);
 ```
 
-#### 平台型应用获取初始化token
+### 2. 接口调用
+
+#### Token方式
 ``` php
 require_once './vendor/autoload.php';
 
-$clientId = "fill your client_id";
-$clientSecret = "fill your client_secret";
-
-$type = 'platform_init';
-
-$accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type);
-var_dump($accessToken);
-```
-
-#### 平台型应用获取店铺token
-``` php
-require_once './vendor/autoload.php';
-
-$clientId = "fill your client_id";
-$clientSecret = "fill your client_secret";
-
-$type = 'platform';
-$keys['kdt_id'] = '160';
-
-$accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
-var_dump($accessToken);
-```
-
-### 2. 接口调用示例1
-``` php
-require_once './vendor/autoload.php';
 $accessToken = 'fill your token';
 $client = new \Youzan\Open\Client($accessToken);
 
@@ -108,27 +84,20 @@ $response = $client->get($method, $apiVersion, $params);
 var_dump($response);
 ```
 
-### 2. 接口调用示例2
+#### 免鉴权方式 (仅支持免鉴权接口)
 ``` php
 require_once './vendor/autoload.php';
-$accessToken = 'fill your token';
-$client = new \Youzan\Open\Client($accessToken);
 
-$method = 'youzan.materials.storage.platform.img.upload';
+$client = new \Youzan\Open\Client();
+
+$method = 'youzan.item.get';
 $apiVersion = '3.0.0';
 
 $params = [
     'alias' => 'fa8989ad342k',
 ];
 
-$files = [
-    [
-        'url' => __DIR__ . '/test1.png',
-        'field' => 'image[]',
-    ],
-];
-
-$response = $client->post($method, $apiVersion, array(), $files);
+$response = $client->get($method, $apiVersion, $params);
 var_dump($response);
 ```
 
