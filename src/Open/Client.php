@@ -6,10 +6,11 @@ namespace Youzan\Open;
 class Client
 {
     private static $requestUrl = 'https://api.youzanyun.com/api/%s/%s?access_token=%s';
+    private static $requestUrlAuthExempt = 'https://api.youzanyun.com/api/auth_exempt/%s/%s';
 
     private $accessToken;
 
-    public function __construct($accessToken)
+    public function __construct($accessToken = '')
     {
         $this->accessToken = $accessToken;
     }
@@ -25,7 +26,11 @@ class Client
 
     public function url($method, $apiVersion)
     {
-        return sprintf(self::$requestUrl, $method, $apiVersion, $this->accessToken);
+        if (empty($this->accessToken)) {
+            return sprintf(self::$requestUrlAuthExempt, $method, $apiVersion);
+        } else {
+            return sprintf(self::$requestUrl, $method, $apiVersion, $this->accessToken);
+        }
     }
 
     private function parseResponse($responseData)
