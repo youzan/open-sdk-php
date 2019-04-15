@@ -25,7 +25,7 @@ class Http
     {
         $ci = curl_init();
 
-        curl_setopt($ci, CURLOPT_USERAGENT, 'YZY-Open-Client bifrost - PHP');
+        curl_setopt($ci, CURLOPT_USERAGENT, 'YZY-Open-Client 2.0.2 - PHP');
         curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ci, CURLOPT_TIMEOUT, 30);
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
