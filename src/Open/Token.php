@@ -10,7 +10,7 @@ class Token
     private $accessToken;
     private $refreshToken;
 
-    private static $requestUrl = 'https://api.youzanyun.com/auth/token';
+    private static $requestUrl = 'https://open.youzanyun.com/auth/token';
 
     public function __construct($clientId, $clientSecret, $accessToken = null, $refreshToken = null)
     {
