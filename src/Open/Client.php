@@ -5,8 +5,8 @@ namespace Youzan\Open;
 
 class Client
 {
-    private static $requestUrl = 'https://api.youzanyun.com/api/%s/%s?access_token=%s';
-    private static $requestUrlAuthExempt = 'https://api.youzanyun.com/api/auth_exempt/%s/%s';
+    private static $requestUrl = 'https://open.youzanyun.com/api/%s/%s?access_token=%s';
+    private static $requestUrlAuthExempt = 'https://open.youzanyun.com/api/auth_exempt/%s/%s';
 
     private $accessToken;
 
