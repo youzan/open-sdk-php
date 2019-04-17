@@ -25,7 +25,7 @@ class Http
     {
         $ci = curl_init();
 
-        curl_setopt($ci, CURLOPT_USERAGENT, 'YZY-Open-Client 2.0.2 - PHP');
+        curl_setopt($ci, CURLOPT_USERAGENT, 'YZY-Open-Client 2.0.4 - PHP');
         curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ci, CURLOPT_TIMEOUT, 30);
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
@@ -38,8 +38,8 @@ class Http
         curl_setopt($ci, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE);
 
-        if (!empty($postFields)) {
-            curl_setopt($ci, CURLOPT_POSTFIELDS, json_encode($postFields));
+        if (!is_null($postFields)) {
+            curl_setopt($ci, CURLOPT_POSTFIELDS, json_encode($postFields, JSON_FORCE_OBJECT));
         }
 
         $response = curl_exec($ci);
