@@ -80,7 +80,7 @@ $params = [
     'alias' => 'fa8989ad342k',
 ];
 
-$response = $client->get($method, $apiVersion, $params);
+$response = $client->post($method, $apiVersion, $params);
 var_dump($response);
 ```
 
@@ -97,7 +97,7 @@ $params = [
     'alias' => 'fa8989ad342k',
 ];
 
-$response = $client->get($method, $apiVersion, $params);
+$response = $client->post($method, $apiVersion, $params);
 var_dump($response);
 ```
 
