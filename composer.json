@@ -7,12 +7,12 @@
         "youzanyun",
         "open-sdk"
     ],
-    "homepage": "https://github.com/youzanyun/open-sdk-php",
+    "homepage": "https://github.com/youzan/open-sdk-php",
     "authors": [
         {
-            "name": "youzanyun",
+            "name": "youzan",
             "role": "Developer",
-            "homepage": "https://github.com/youzanyun"
+            "homepage": "https://github.com/youzan"
         }
     ],
     "require": {
