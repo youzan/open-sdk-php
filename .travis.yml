@@ -1,0 +1,19 @@
+language: php
+
+php:
+  - 7.1
+
+before_script:
+  - wget http://robo.li/robo.phar
+  - chmod +x robo.phar && sudo mv robo.phar /usr/bin/robo
+
+script: /usr/bin/robo release
+
+deploy:
+  provider: releases
+  api_key: $CI_USER_TOKEN
+  skip_cleanup: true
+  file:
+    - release/youzanyun-open-sdk.zip
+  on:
+    tags: true
