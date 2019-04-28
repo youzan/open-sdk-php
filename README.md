@@ -3,8 +3,10 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Build Status][ico-travis]](link-travis)
 
-Youzan Open SDK
+
+YouzanYun SDK
 
 
 ## NOTICE
@@ -16,21 +18,25 @@ Youzan Open SDK
 - [有赞云版SDK 代号:bifrost](../../tree/bifrost)
 
 
-## Install
+## 安装
 
-Via Composer
+1. 使用 `Composer`
+推荐使用该方式安装, 更优雅  
 
 ``` bash
-// 有赞云版SDK 保持最新
-$ composer require youzanyun/open-sdk "dev-bifrost"
-
-or
-// 有赞云版SDK 默认(版本号>2)
 $ composer require youzanyun/open-sdk
 ```
 
+2. 不适应 `Composer` 管理  
 
-## Usage
+如果你的项目不使用`Composer`管理, 可以直接下载[Release包](https://github.com/youzan/open-sdk-php/releases) 并解压, 然后在项目中添加如下代码:  
+请注意, 需要下载的是最新的 `youzanyun-open-sdk.zip` 压缩包, 而不是 `Source code`  压缩包.  
+`/path/to/` 更改为项目实际路径.   
+``` php
+require_once '/path/to/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
+``` 
+
+## 使用
 
 ### 1. 获取 accessToken
 
@@ -118,6 +124,8 @@ The MIT License. Please see [License File](LICENSE.md) for more information.
 [ico-version]: https://img.shields.io/packagist/v/youzanyun/open-sdk.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/youzanyun/open-sdk.svg?style=flat-square
+[ico-travis]: https://api.travis-ci.org/youzan/open-sdk-php.svg
 
 [link-packagist]: https://packagist.org/packages/youzanyun/open-sdk
 [link-downloads]: https://packagist.org/packages/youzanyun/open-sdk
+[link-travis]: https://travis-ci.org/youzan/open-sdk-php
