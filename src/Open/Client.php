@@ -3,10 +3,11 @@
 namespace Youzan\Open;
 
 
+use Youzan\Open\Config\HttpConfig;
+
+
 class Client
 {
-    private static $requestUrl = 'https://open.youzanyun.com/api/%s/%s?access_token=%s';
-    private static $requestUrlAuthExempt = 'https://open.youzanyun.com/api/auth_exempt/%s/%s';
 
     private $accessToken;
 
@@ -15,7 +16,7 @@ class Client
         $this->accessToken = $accessToken;
     }
 
-    public function post($method, $apiVersion, $params = array(), $files = array())
+    public function post($method, $apiVersion, $params = [], $files = [])
     {
         return $this->parseResponse(
             Http::post(
@@ -27,9 +28,9 @@ class Client
     public function url($method, $apiVersion)
     {
         if (empty($this->accessToken)) {
-            return sprintf(self::$requestUrlAuthExempt, $method, $apiVersion);
+            return sprintf(HttpConfig::REQUEST_URL_AUTH_EXEMPT, $method, $apiVersion);
         } else {
-            return sprintf(self::$requestUrl, $method, $apiVersion, $this->accessToken);
+            return sprintf(HttpConfig::REQUEST_URL, $method, $apiVersion, $this->accessToken);
         }
     }
 
