@@ -3,7 +3,7 @@
 namespace Youzan\Open;
 
 use GuzzleHttp\Client;
-use Youzan\Open\Config\HttpConfig;
+use Youzan\Open\Config\EcommerceConfig;
 
 
 class Http
@@ -26,7 +26,8 @@ class Http
     private static function buildOptional($params = [], $files = [])
     {
         $ret = [
-            'headers' => HttpConfig::getHttpHeaders(),
+            'proxy' => EcommerceConfig::getHttpProxy(),
+            'headers' => EcommerceConfig::getHttpHeaders(),
         ];
 
         // 非上传文件请求
