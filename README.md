@@ -38,6 +38,8 @@ require_once '/path/to/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
 
 ## 使用
 
+详情参考[examples](examples)
+
 ### 1. 获取 accessToken
 
 #### 工具型应用
@@ -107,9 +109,9 @@ $response = $client->post($method, $apiVersion, $params);
 var_dump($response);
 ```
 
-## Change log
+### 3. 加密消息解密
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+参考[./examples/decrypt.php](./examples/decrypt.php)
 
 
 ## Security
@@ -119,7 +121,7 @@ If you discover any security related issues, please using the issue tracker.
 
 ## License
 
-The MIT License. Please see [License File](LICENSE.md) for more information.
+The MIT License. Please see [License File](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/youzanyun/open-sdk.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
