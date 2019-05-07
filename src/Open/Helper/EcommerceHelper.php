@@ -23,11 +23,20 @@ class EcommerceHelper
 
         $urlArr = parse_url($url);
 
-        $ret['url'] = sprintf("%s%s%s",
-            self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
-            $urlArr['path'],
-            $urlArr['query']
-        );
+        $proxyHost = self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST);
+        if (strpos($proxyHost, 'http') === 0) {
+            $ret['url'] = sprintf("%s%s%s",
+                self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
+                $urlArr['path'],
+                $urlArr['query']
+            );
+        } else {
+            $ret['url'] = sprintf("http://%s%s%s",
+                self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
+                $urlArr['path'],
+                $urlArr['query']
+            );
+        }
 
         $ret['headers'] = self::getHttpHeaders($urlArr['host']);
 
