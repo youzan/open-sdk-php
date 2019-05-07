@@ -3,8 +3,8 @@
 namespace Youzan\Open;
 
 use GuzzleHttp\Client;
-use Youzan\Open\Config\EcommerceConfig;
 use Youzan\Open\Config\HttpConfig;
+use Youzan\Open\Helper\EcommerceHelper;
 
 
 class Http
@@ -14,27 +14,23 @@ class Http
     {
         $client = new Client();
 
+        $urlAndHeaders = EcommerceHelper::buildUrlAndHeaders($url);
+
         $response = $client->request(
             'POST',
-            $url,
-            self::buildOptional($url, $params, $files)
+            $urlAndHeaders['url'],
+            self::buildOptional($params, $files, $urlAndHeaders['headers'])
         );
 
         return $response->getBody()->getContents();
     }
 
 
-    private static function buildOptional($url, $params = [], $files = [])
+    private static function buildOptional($params = [], $files = [], $headers = [])
     {
         $ret = [
-            'headers' => HttpConfig::getHttpHeaders(),
+            'headers' => array_merge(HttpConfig::getHttpHeaders(), $headers),
         ];
-
-        $isUseProxy = EcommerceConfig::isUseProxy(parse_url($url, PHP_URL_HOST));
-        if ($isUseProxy) {
-            $ret['headers'] = EcommerceConfig::getHttpHeaders();
-            $ret['proxy'] = EcommerceConfig::getHttpProxy();
-        }
 
         // 非上传文件请求
         if (empty($files)) {
