@@ -23,7 +23,7 @@ class EcommerceHelper
 
         $urlArr = parse_url($url);
 
-        $ret['url'] = sprintf("http://%s%s%s",
+        $ret['url'] = sprintf("%s%s%s",
             self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
             $urlArr['path'],
             $urlArr['query']
