@@ -34,6 +34,11 @@ class Client
         }
     }
 
+    public function get($method, $apiVersion, $params = [], $files = [])
+    {
+        return $this->post($method, $apiVersion, $params, $files);
+    }
+
     private function parseResponse($responseData)
     {
         return json_decode($responseData, true);

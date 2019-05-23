@@ -34,7 +34,8 @@ class Http
 
         // 非上传文件请求
         if (empty($files)) {
-            $ret['json'] = $params;
+            $ret['headers']['Content-Type'] = 'application/json';
+            $ret['body'] = json_encode($params, JSON_FORCE_OBJECT);
             return $ret;
         }
 

@@ -6,5 +6,5 @@ namespace Youzan\Open\Config;
 
 class CommonConfig
 {
-    const SDK_VERSION = '2.0.8';
+    const SDK_VERSION = '2.0.9';
 }
