@@ -2,7 +2,6 @@
 
 namespace Youzan\Open;
 
-use GuzzleHttp\Client;
 use Youzan\Open\Config\HttpConfig;
 use Youzan\Open\Helper\EcommerceHelper;
 
@@ -12,7 +11,7 @@ class Http
 
     public static function post($url, $params = [], $files = [])
     {
-        $client = new Client();
+        $client = new \GuzzleHttp\Client();
 
         $urlAndHeaders = EcommerceHelper::buildUrlAndHeaders($url);
 
