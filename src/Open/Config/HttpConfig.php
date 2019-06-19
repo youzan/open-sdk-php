@@ -14,7 +14,7 @@ class HttpConfig
     const REQUEST_TOKEN_URL = 'https://open.youzanyun.com/auth/token';
 
 
-    private static $formatUserAgent = 'YZY-Open-Client %s - PHP';
+    private static $formatUserAgent = 'YZY-Open-Client %s-PHP';
 
 
     public static function getHttpHeaders()
