@@ -40,11 +40,9 @@ class Token
             case 'authorization_code':
                 $params['code'] = $keys['code'];
                 $params['authorize_type'] = 'authorization_code';
-                $params['redirect_uri'] = $keys['redirect_uri'];
                 break;
             // 工具型应用刷新 token
             case 'refresh_token':
-                $params['scope'] = 'scope';
                 $params['authorize_type'] = 'refresh_token';
                 $params['refresh_token'] = $keys['refresh_token'];
                 break;
