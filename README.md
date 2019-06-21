@@ -48,11 +48,14 @@ require_once './vendor/autoload.php';
 
 $clientId = "fill your client_id";
 $clientSecret = "fill your client_secret";
-$redirectUrl = "fill your redirect_url";
 
-$type = 'authorization_code';  //如要刷新access_token，type值为refresh_token
-$keys['code'] = $_GET['code'];  //如要刷新access_token，这里为$keys['refresh_token']
-$keys['redirect_uri'] = $redirect_url;
+// 获取AccessToken
+$type = 'authorization_code';
+$keys['code'] = 'fill the code';
+
+// 刷新AccessToken
+$type = 'refresh_token';
+$keys['refresh_token'] = 'fill the refresh_token';
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
@@ -70,6 +73,19 @@ $keys['kdt_id'] = '160';
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
+
+// $accessToken 正确返回时的结构
+// 到期时间
+// $accessToken['expires']
+
+// 有权限使用的接口分组
+// $accessToken['scope']
+
+// AccessToken
+// $accessToken['access_token']
+
+// 授权主体
+// $accessToken['authority_id']
 ```
 
 ### 2. 接口调用
