@@ -34,7 +34,7 @@ class Http
         // 非上传文件请求
         if (empty($files)) {
             $ret['headers']['Content-Type'] = 'application/json';
-            $ret['body'] = json_encode($params, JSON_FORCE_OBJECT);
+            $ret['body'] = self::buildBody($params);
             return $ret;
         }
 
@@ -49,5 +49,14 @@ class Http
         }
 
         return $ret;
+    }
+
+    private static function buildBody($params)
+    {
+        if (empty($params)) {
+            return '{}';
+        }
+
+        return json_encode($params);
     }
 }
