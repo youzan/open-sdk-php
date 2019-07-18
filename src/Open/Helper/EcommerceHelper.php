@@ -25,13 +25,13 @@ class EcommerceHelper
 
         $proxyHost = self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST);
         if (strpos($proxyHost, 'http') === 0) {
-            $ret['url'] = sprintf("%s%s%s",
+            $ret['url'] = sprintf("%s%s?%s",
                 self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
                 $urlArr['path'],
                 $urlArr['query']
             );
         } else {
-            $ret['url'] = sprintf("http://%s%s%s",
+            $ret['url'] = sprintf("http://%s%s?%s",
                 self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
                 $urlArr['path'],
                 $urlArr['query']
