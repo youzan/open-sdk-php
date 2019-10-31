@@ -45,7 +45,7 @@ class Client
             return sprintf(HttpConfig::REQUEST_URL_AUTH_EXEMPT, $method, $apiVersion);
         }
 
-        if (!empty($config) && $config['isRichText']) {
+        if (!empty($config) && isset($config['isRichText']) && $config['isRichText']) {
             return sprintf(HttpConfig::REQUEST_URL_TEXTAREA, $method, $apiVersion, $this->accessToken);
         }
 
