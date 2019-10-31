@@ -16,11 +16,20 @@ class Client
         $this->accessToken = $accessToken;
     }
 
-    public function get($method, $apiVersion, $params = [], $files = [], $config = [])
+    /**
+     * 调用接口 GET
+     *
+     * @deprecated 已废弃, 请使用 post 方法
+     * @see self::post
+     */
+    public function get($method, $apiVersion, $params = [], $files = [])
     {
-        return $this->post($method, $apiVersion, $params, $files, $config);
+        return $this->post($method, $apiVersion, $params, $files);
     }
 
+    /**
+     * 调用接口 POST
+     */
     public function post($method, $apiVersion, $params = [], $files = [], $config = [])
     {
         return $this->parseResponse(
