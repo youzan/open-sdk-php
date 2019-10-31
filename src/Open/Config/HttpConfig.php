@@ -11,6 +11,8 @@ class HttpConfig
 
     const REQUEST_URL_AUTH_EXEMPT = 'https://open.youzanyun.com/api/auth_exempt/%s/%s';
 
+    const REQUEST_URL_TEXTAREA = 'https://open.youzanyun.com/api/_textarea_/%s/%s?access_token=%s';
+
     const REQUEST_TOKEN_URL = 'https://open.youzanyun.com/auth/token';
 
 

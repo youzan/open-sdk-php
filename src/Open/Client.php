@@ -16,27 +16,31 @@ class Client
         $this->accessToken = $accessToken;
     }
 
-    public function post($method, $apiVersion, $params = [], $files = [])
+    public function get($method, $apiVersion, $params = [], $files = [], $config = [])
+    {
+        return $this->post($method, $apiVersion, $params, $files, $config);
+    }
+
+    public function post($method, $apiVersion, $params = [], $files = [], $config = [])
     {
         return $this->parseResponse(
             Http::post(
-                $this->url($method, $apiVersion), $params, $files
+                $this->url($method, $apiVersion, $config), $params, $files
             )
         );
     }
 
-    public function url($method, $apiVersion)
+    private function url($method, $apiVersion, $config = [])
     {
         if (empty($this->accessToken)) {
             return sprintf(HttpConfig::REQUEST_URL_AUTH_EXEMPT, $method, $apiVersion);
-        } else {
-            return sprintf(HttpConfig::REQUEST_URL, $method, $apiVersion, $this->accessToken);
         }
-    }
 
-    public function get($method, $apiVersion, $params = [], $files = [])
-    {
-        return $this->post($method, $apiVersion, $params, $files);
+        if (!empty($config) && $config['isRichText']) {
+            return sprintf(HttpConfig::REQUEST_URL_TEXTAREA, $method, $apiVersion, $this->accessToken);
+        }
+
+        return sprintf(HttpConfig::REQUEST_URL, $method, $apiVersion, $this->accessToken);
     }
 
     private function parseResponse($responseData)
