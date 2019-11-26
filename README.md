@@ -33,7 +33,7 @@ $ composer require youzanyun/open-sdk
 请注意, 需要下载的是最新的 `youzanyun-open-sdk.zip` 压缩包, 而不是 `Source code`  压缩包.  
 `/path/to/` 更改为项目实际路径.   
 ``` php
-require_once '/path/to/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
+require_once '/YOUR_SDK_PATH/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
 ``` 
 
 ## 使用
@@ -46,16 +46,16 @@ require_once '/path/to/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
 ``` php
 require_once './vendor/autoload.php';
 
-$clientId = "fill your client_id";
-$clientSecret = "fill your client_secret";
+$clientId = "YOUR_CLIENT_ID";
+$clientSecret = "YOUR_CLIENT_SECRET";
 
 // 获取AccessToken
 $type = 'authorization_code';
-$keys['code'] = 'fill the code';
+$keys['code'] = 'YOUR_CODE';
 
 // 刷新AccessToken
 $type = 'refresh_token';
-$keys['refresh_token'] = 'fill the refresh_token';
+$keys['refresh_token'] = 'YOUR_REFRESH_TOKEN';
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
@@ -65,27 +65,15 @@ var_dump($accessToken);
 ``` php
 require_once './vendor/autoload.php';
 
-$clientId = "fill your client_id";
-$clientSecret = "fill your client_secret";
+$clientId = "YOUR_CLIENT_ID";
+$clientSecret = "YOUR_CLIENT_SECRET";
 
 $type = 'silent';
-$keys['kdt_id'] = '160';
+$keys['kdt_id'] = 'YOUR_KDT_ID';
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
 
-// $accessToken 正确返回时的结构
-// 到期时间
-// $accessToken['expires']
-
-// 有权限使用的接口分组
-// $accessToken['scope']
-
-// AccessToken
-// $accessToken['access_token']
-
-// 授权主体
-// $accessToken['authority_id']
 ```
 
 ### 2. 接口调用
@@ -94,7 +82,7 @@ var_dump($accessToken);
 ``` php
 require_once './vendor/autoload.php';
 
-$accessToken = 'fill your token';
+$accessToken = 'YOUR_TOKEN';
 $client = new \Youzan\Open\Client($accessToken);
 
 $method = 'youzan.item.get';
