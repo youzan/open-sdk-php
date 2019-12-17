@@ -115,7 +115,7 @@ var_dump($response);
 
 ### 3. 加密消息解密
 
-参考[./examples/decrypt.php](./examples/decrypt.php)
+参考[examples/crypto/decrypt.php](examples/crypto/decrypt.php)
 
 
 ## Security
