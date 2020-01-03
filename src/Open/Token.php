@@ -35,13 +35,14 @@ class Token
             case 'silent':
                 $params['authorize_type'] = 'silent';
                 $params['grant_id'] = $keys['kdt_id'];
+                $params['refresh'] = array_key_exists('refresh', $keys) ? boolval($keys['refresh']) : false;
                 break;
             // 工具型应用获取 token
             case 'authorization_code':
                 $params['code'] = $keys['code'];
                 $params['authorize_type'] = 'authorization_code';
                 break;
-            // 工具型应用刷新 token
+            // 刷新 token
             case 'refresh_token':
                 $params['authorize_type'] = 'refresh_token';
                 $params['refresh_token'] = $keys['refresh_token'];
