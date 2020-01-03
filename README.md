@@ -40,28 +40,23 @@ require_once '/YOUR_SDK_PATH/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
 
 详情参考[examples](examples)
 
-### 1. 获取 accessToken
+### 1. 获取及刷新access_token
 
-#### 工具型应用
+#### 工具型应用 获取access_token
 ``` php
 require_once './vendor/autoload.php';
 
 $clientId = "YOUR_CLIENT_ID";
 $clientSecret = "YOUR_CLIENT_SECRET";
 
-// 获取AccessToken
 $type = 'authorization_code';
 $keys['code'] = 'YOUR_CODE';
-
-// 刷新AccessToken
-$type = 'refresh_token';
-$keys['refresh_token'] = 'YOUR_REFRESH_TOKEN';
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
 ```
 
-#### 自用型应用
+#### 自用型应用 获取access_token
 ``` php
 require_once './vendor/autoload.php';
 
@@ -70,10 +65,21 @@ $clientSecret = "YOUR_CLIENT_SECRET";
 
 $type = 'silent';
 $keys['kdt_id'] = 'YOUR_KDT_ID';
+$keys['refresh'] = true;  //是否获取refresh_token(可通过refresh_token刷新token)
 
 $accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
 var_dump($accessToken);
+```
 
+#### 工具型应用及自用型应用 刷新access_token
+```php
+require_once './vendor/autoload.php';
+
+$type = 'refresh_token';
+$keys['refresh_token'] = 'YOUR_REFRESH_TOKEN';
+
+$accessToken = (new \Youzan\Open\Token($clientId, $clientSecret))->getToken($type, $keys);
+var_dump($accessToken);
 ```
 
 ### 2. 接口调用
