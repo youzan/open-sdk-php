@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Youzan\Open\Helper;
 
-
 use Youzan\Open\Config\EcommerceConfig;
-
 
 class EcommerceHelper
 {
@@ -23,26 +20,32 @@ class EcommerceHelper
 
         $urlArr = parse_url($url);
 
-        $proxyHost = self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST);
-        if (strpos($proxyHost, 'http') === 0) {
-            $ret['url'] = sprintf("%s%s?%s",
-                self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
-                $urlArr['path'],
-                $urlArr['query']
-            );
-        } else {
-            $ret['url'] = sprintf("http://%s%s?%s",
-                self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST),
-                $urlArr['path'],
-                $urlArr['query']
-            );
-        }
-
+        $ret['url'] = self::buildUrl($urlArr);
         $ret['headers'] = self::getHttpHeaders($urlArr['host']);
 
         return $ret;
     }
 
+    private static function buildUrl($urlArr)
+    {
+        $proxyHost = self::getEnvValue(EcommerceConfig::ENV_PROXY_HOST);
+
+        if (strpos($proxyHost, 'http') !== 0) {
+            $proxyHost = 'http://' . $proxyHost;
+        }
+
+        $url = $proxyHost;
+
+        if (isset($urlArr['path'])) {
+            $url .= $urlArr['path'];
+        }
+
+        if (isset($urlArr['query'])) {
+            $url .= '?' . $urlArr['query'];
+        }
+
+        return $url;
+    }
 
     private static function getHttpHeaders($hostname)
     {
