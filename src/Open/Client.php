@@ -2,16 +2,15 @@
 
 namespace Youzan\Open;
 
-
 use Youzan\Open\Config\HttpConfig;
-
 
 class Client
 {
 
     private $accessToken;
 
-    public function __construct($accessToken = '')
+
+    public function __construct($accessToken = null)
     {
         $this->accessToken = $accessToken;
     }
@@ -19,38 +18,37 @@ class Client
     /**
      * 调用接口 GET
      *
+     * @param $api
+     * @param $version
+     * @param array $params
+     * @param array $files
+     * @return mixed
      * @deprecated 已废弃, 请使用 post 方法
      * @see self::post
      */
-    public function get($method, $apiVersion, $params = [], $files = [])
+    public function get($api, $version, $params = [], $files = [])
     {
-        return $this->post($method, $apiVersion, $params, $files);
+        return $this->post($api, $version, $params, $files);
     }
+
 
     /**
      * 调用接口 POST
+     *
+     * @param $api
+     * @param $version
+     * @param array $params
+     * @param array $files
+     * @param array $config
+     * @return mixed
      */
-    public function post($method, $apiVersion, $params = [], $files = [], $config = [])
+    public function post($api, $version, $params = [], $files = [], $config = [])
     {
-        return $this->parseResponse(
-            Http::post(
-                $this->url($method, $apiVersion, $config), $params, $files
-            )
-        );
+        $url = HttpConfig::buildRequestUrl($api, $version, $this->accessToken, $config);
+
+        return $this->parseResponse(Http::post($url, $params, $files));
     }
 
-    private function url($method, $apiVersion, $config = [])
-    {
-        if (empty($this->accessToken)) {
-            return sprintf(HttpConfig::REQUEST_URL_AUTH_EXEMPT, $method, $apiVersion);
-        }
-
-        if (!empty($config) && isset($config['isRichText']) && $config['isRichText']) {
-            return sprintf(HttpConfig::REQUEST_URL_TEXTAREA, $method, $apiVersion, $this->accessToken);
-        }
-
-        return sprintf(HttpConfig::REQUEST_URL, $method, $apiVersion, $this->accessToken);
-    }
 
     private function parseResponse($responseData)
     {
