@@ -28,7 +28,7 @@ class Http
     private static function buildOptional($params = [], $files = [], $headers = [])
     {
         $ret = [
-            'headers' => array_merge(HttpConfig::getHttpHeaders(), $headers),
+            'headers' => array_merge(HttpConfig::buildHttpHeaders(), $headers),
         ];
 
         // 非上传文件请求
