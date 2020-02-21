@@ -7,7 +7,7 @@ class HttpConfig
 
     const FORMAT_USER_AGENT = 'YZY-Open-Client %s-PHP';
 
-    const SDK_VERSION = '2.0.19';
+    const SDK_VERSION = '2.0.20';
 
     const REQUEST_BASE_URL = 'https://open.youzanyun.com';
 

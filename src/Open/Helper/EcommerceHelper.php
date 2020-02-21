@@ -67,6 +67,14 @@ class EcommerceHelper
 
     private static function getEnvValue($key)
     {
-        return getenv($key);
+        if (empty($key)) {
+            return null;
+        }
+
+        if (isset($_SERVER[$key])) {
+            return $_SERVER[$key];
+        }
+
+        return null;
     }
 }
