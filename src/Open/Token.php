@@ -55,6 +55,43 @@ class Token
     }
 
     /**
+     * 有赞客应用获取Token
+     *
+     * @param int|string $authorityId
+     * @param array $config
+     * @return mixed
+     */
+    public function getYouzanKeAppToken($authorityId, $config = [])
+    {
+        $params = [
+            'authorize_type' => 'silent',
+            'grant_id' => $authorityId,
+            'grant_type' => 'youzanke',
+            'refresh' => array_key_exists('refresh', $config) ? boolval($config['refresh']) : false,
+        ];
+
+        return $this->exec($params, $config);
+    }
+
+    /**
+     * 平台型应用获取Token
+     *
+     * @param int|string $authorityId
+     * @param array $config
+     * @return mixed
+     */
+    public function getPlatformAppToken($authorityId, $config = [])
+    {
+        $params = [
+            'authorize_type' => 'certificate',
+            'grant_id' => $authorityId,
+            'refresh' => array_key_exists('refresh', $config) ? boolval($config['refresh']) : false,
+        ];
+
+        return $this->exec($params, $config);
+    }
+
+    /**
      * 刷新Token(通过refreshToken刷新Token)
      *
      * @param string $refreshToken
