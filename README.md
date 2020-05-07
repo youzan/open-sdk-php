@@ -9,36 +9,30 @@
 YouzanYun SDK
 
 
-## NOTICE
-
-有赞开放平台升级为有赞云，开发者需要进行迁移工作，此为有赞云版本SDK。如果你之前未接入有赞云，建议直接使用本版本进行业务开发。如果已接入开放平台需迁移，可以使用兼容版本也可以直接使用本版本进行开发。
-
-- [开放平台SDK 代号:carmen](../../tree/carmen)
-- [兼容版本SDK 代号:compatible](../../tree/compatible)
-- [有赞云版SDK 代号:bifrost](../../tree/bifrost)
-
-
 ## 安装
 
-1. 使用 `Composer`
+1. 使用 `composer`  
+
 推荐使用该方式安装, 更优雅  
 
 ``` bash
 $ composer require youzanyun/open-sdk
 ```
 
-2. 不适应 `Composer` 管理  
+2. 不使用 `composer` 管理  
 
-如果你的项目不使用`Composer`管理, 可以直接下载[Release包](https://github.com/youzan/open-sdk-php/releases) 并解压, 然后在项目中添加如下代码:  
-请注意, 需要下载的是最新的 `youzanyun-open-sdk.zip` 压缩包, 而不是 `Source code`  压缩包.  
-`/path/to/` 更改为项目实际路径.   
+如果你的项目不使用`composer`管理, 可以直接下载 [Release包](https://github.com/youzan/open-sdk-php/releases) 并解压, 然后在项目中添加如下代码:  
+
 ``` php
 require_once '/YOUR_SDK_PATH/youzanyun-open-sdk/open-sdk/vendor/autoload.php';
 ``` 
 
+请注意, 需要下载的是最新的 `youzanyun-open-sdk.zip` 压缩包, 而不是 `Source code` 压缩包, `YOUR_SDK_PATH` 需更改为项目实际路径.   
+
+
 ## 使用
 
-详情参考[examples](examples)
+详情参考 [examples](examples)
 
 ### 1. 获取及刷新access_token
 
@@ -118,12 +112,7 @@ var_dump($response);
 
 ### 3. 加密消息解密
 
-参考[examples/crypto/decrypt.php](examples/crypto/decrypt.php)
-
-
-## Security
-
-If you discover any security related issues, please using the issue tracker.
+参考 [examples/crypto/decrypt.php](examples/crypto/decrypt.php)
 
 
 ## License
