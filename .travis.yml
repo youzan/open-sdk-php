@@ -4,7 +4,7 @@ php:
   - 7.1
 
 before_script:
-  - wget http://robo.li/robo.phar
+  - wget https://github.com/consolidation/Robo/releases/download/1.4.12/robo.phar
   - chmod +x robo.phar && sudo mv robo.phar /usr/bin/robo
 
 script: /usr/bin/robo release
