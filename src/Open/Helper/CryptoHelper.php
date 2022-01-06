@@ -9,7 +9,6 @@ use Youzan\Open\Config\CryptoConfig;
 
 class CryptoHelper
 {
-
     /**
      * 消息解密(订购消息等)
      *
