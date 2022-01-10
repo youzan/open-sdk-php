@@ -19,10 +19,13 @@ class OpenClientSecretServer
     const separator = '$';
 
     private $secretCache;
+    private $secretCacheSchedule;
 
     public function __construct($clientId,$clientSecret,$env)
     {
         $this->secretCache = new HttpSecretCache(new SecurityData($clientId,$clientSecret),$env);
+//        $this->secretCacheSchedule = new SecretCacheSchedule($this->secretCache);
+//        $this->secretCacheSchedule->start();
     }
 
     /**

@@ -59,6 +59,14 @@ class HttpSecretCache
         return $jsonMapper->map($secretConfigResult->getData(),new ClientEncryptConfig());
     }
 
+    public function refreshAll() {
+        try{
+            $this->doInit();
+        }catch (\Exception $e) {
+            // 日志打印
+        }
+    }
+
     private function refresh($kdtId) {
         $jsonMapper = new DataSecurityJsonMapper();
         $clientConfig = $this->querySecret($kdtId,$jsonMapper);
