@@ -9,7 +9,6 @@ require_once '../../../vendor/autoload.php';
 include "SecretClient.php";
 //$secretClient = new SecretClient("ff339e73f9ee5d5cb6","11661eb9e3b2287a90b16385e00d1ee9");
 //$kdtId = 58832146;
-
 $secretClient = SecretClient::getnstance("68ffaf8440a4b7940c","b0030740948e368c4ca21ed5d0b01725");
 $kdtId = 60102958;
 $encryptRel = $secretClient->singleEncrypt($kdtId,"测试");
