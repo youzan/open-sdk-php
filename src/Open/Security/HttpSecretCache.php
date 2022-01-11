@@ -61,9 +61,11 @@ class HttpSecretCache
 
     public function refreshAll() {
         try{
+            echo "==refreshAll==";
             $this->doInit();
         }catch (\Exception $e) {
             // 日志打印
+            var_dump($e);
         }
     }
 

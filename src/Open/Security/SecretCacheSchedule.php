@@ -2,9 +2,9 @@
 
 
 namespace Youzan\Open\Security;
-use Thread;
 
-class SecretCacheSchedule extends \Thread
+
+class SecretCacheSchedule
 {
     private $httpSecretCache;
 
@@ -15,19 +15,22 @@ class SecretCacheSchedule extends \Thread
     public function __construct($httpSecretCache)
     {
         $this->httpSecretCache = $httpSecretCache;
+//        $this->run();
+        $pid = \pcntl_fork();
+        echo "=====pid：".$pid;
     }
 
     public function run()
     {
-        while (true) {
-            try{
-                echo "====定时刷新开始====";
-                $this->httpSecretCache->refreshAll();
-                sleep(3000);
-            }catch (\Exception $e) {
-                // 日志打印
-            }
+        try{
+            echo "====定时刷新开始====";
+            $this->httpSecretCache->refreshAll();
+        }catch (\Throwable $e) {
+            // 日志打印
+            var_dump($e->getMessage());
         }
+
+
     }
 
 

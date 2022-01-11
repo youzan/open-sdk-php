@@ -49,7 +49,7 @@ class Salsa20 {
             ($x[2+$offset] << 16) |
             ($x[3+$offset] << 24);
     }
-    function store($x, $offset = 0, $u) {
+    function store($x, $offset, $u) {
         $x[$offset]   = $u & 0xff; $u >>= 8;
         $x[1+$offset] = $u & 0xff; $u >>= 8;
         $x[2+$offset] = $u & 0xff; $u >>= 8;

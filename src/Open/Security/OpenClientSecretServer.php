@@ -25,8 +25,8 @@ class OpenClientSecretServer
     {
         $this->secretCache = new HttpSecretCache(new SecurityData($clientId,$clientSecret),$env);
 //        $this->secretCacheSchedule = new SecretCacheSchedule($this->secretCache);
-//        $this->secretCacheSchedule->start();
     }
+
 
     /**
      * 单项加密

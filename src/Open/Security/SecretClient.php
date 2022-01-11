@@ -21,6 +21,14 @@ class SecretClient
 
     private $openClientSecretServer;
     private $env;
+    static $secretClient;
+
+    public static function getnstance($clientId,$clientSecret) {
+        if(null == SecretClient::$secretClient) {
+            SecretClient::$secretClient = new SecretClient($clientId,$clientSecret);
+        }
+        return SecretClient::$secretClient;
+    }
 
     public function __construct($clientId,$clientSecret)
     {
@@ -28,7 +36,11 @@ class SecretClient
         $this->construct($clientId,$clientSecret,$env);
     }
 
+
     private function construct($clientId,$clientSecret,$env) {
+        if(null == $env) {
+            $env = new EnvProdUrl();
+        }
         $this->openClientSecretServer = new OpenClientSecretServer($clientId,$clientSecret,$env);
     }
 
