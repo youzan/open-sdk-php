@@ -32,7 +32,7 @@ class SecretClient
 
     public function __construct($clientId,$clientSecret)
     {
-        $env = new EnvQaUrl();
+        $env = new EnvProdUrl();
         $this->construct($clientId,$clientSecret,$env);
     }
 
