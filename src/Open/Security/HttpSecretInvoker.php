@@ -5,8 +5,6 @@
 
 namespace Youzan\Open\Security;
 
-require_once '../../../vendor/autoload.php';
-
 include "HttpsClient.php";
 include "DataSecurityJsonMapper.php";
 include "PlainResult.php";
