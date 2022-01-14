@@ -7,6 +7,7 @@ use Youzan\Open\Config\HttpConfig;
 class Client
 {
 
+
     private $accessToken;
 
 
