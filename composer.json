@@ -1,7 +1,6 @@
 {
     "name": "youzanyun/open-sdk",
     "description": "有赞云服务端SDK",
-    "version": "2.0.24",
     "type": "library",
     "keywords": [
         "youzan",
