@@ -55,7 +55,8 @@ class HttpSecretCache
     private function querySecret($kdtId,$jsonMapper) {
         $timestamp = date('Y-m-d H:i:s');
         $secretQueryRequest = new SecretKeyQueryRequest($this->securityData->getClientId(),$kdtId,$timestamp,$this->securityData->getClientSecret());
-        $secretConfigResult = $this->secretInvoker->invoke(json_encode($secretQueryRequest));
+//        $secretConfigResult = $this->secretInvoker->invoke(json_encode($secretQueryRequest));
+        $secretConfigResult = $this->secretInvoker->invoke($secretQueryRequest);
         return $jsonMapper->map($secretConfigResult->getData(),new ClientEncryptConfig());
     }
 
