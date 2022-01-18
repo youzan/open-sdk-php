@@ -83,7 +83,7 @@ class OpenClientSecretServer
         $aes = new Aes();
         $result = $aes->decrypts($this->getOriginEncryptData($source),$secretData->getSecretKey());
         if($result == null) {
-            throw new DataSecurityException("请使用正确的店铺进行解密操作",10050);
+            throw new DataSecurityException("请使用正确的店铺进行解密操作",ErrorCode::$PARAM_ERROR);
         }
         return $result;
     }
