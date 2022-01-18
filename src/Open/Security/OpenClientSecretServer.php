@@ -85,6 +85,7 @@ class OpenClientSecretServer
         if($result == null) {
             throw new DataSecurityException("请使用正确的店铺进行解密操作",10050);
         }
+        return $result;
     }
 
     /**
