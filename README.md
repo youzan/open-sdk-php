@@ -134,12 +134,12 @@ $encryptIsEncrypt = $secretClient->singleIsEncrypt($encryptRel);
 // 批量密文判断
 $batchEncryptIsEncrypt = $secretClient->batchIsEncrypt($batchEncryptArray);
 // 单项解密并脱敏 如果是密文则解密脱敏，明文直接脱敏
-// 脱敏类型: ADDRESS 地址,BANK_CARD 银行卡,NAME 中文名,EMAIL 邮箱,COMPANY_NAME 企业名称,ID_CARD 身份证,MOBILE 手机号
-$markAddress = $secretClient->singleDecryptMask($kdtId,"华泰创业园5号楼2楼217室",'ADDRESS');
+// 脱敏类型: MaskHandler::$const_address 地址,MaskHandler::$const_bank_card 银行卡,MaskHandler::$const_name 中文名,MaskHandler::$const_email 邮箱,MaskHandler::$const_company_name 企业名称,MaskHandler::$const_id_card 身份证,MaskHandler::$const_mobile 手机号
+$markAddress = $secretClient->singleDecryptMask($kdtId,"华泰创业园5号楼2楼217室",MaskHandler::$const_address);
 // 批量解密并脱敏 如果是密文则解密脱敏，明文直接脱敏
-// 脱敏类型: ADDRESS 地址,BANK_CARD 银行卡,NAME 中文名,EMAIL 邮箱,COMPANY_NAME 企业名称,ID_CARD 身份证,MOBILE 手机号
+// 脱敏类型: MaskHandler::$const_address 地址,MaskHandler::$const_bank_card 银行卡,MaskHandler::$const_name 中文名,MaskHandler::$const_email 邮箱,MaskHandler::$const_company_name 企业名称,MaskHandler::$const_id_card 身份证,MaskHandler::$const_mobile 手机号
 $batchDncryptMarkArray = array("18736955554","18736955555","18736955556");
-$batchMarkMobileRel = $secretClient->batchDecryptMask($kdtId,$batchDncryptMarkArray,'MOBILE');
+$batchMarkMobileRel = $secretClient->batchDecryptMask($kdtId,$batchDncryptMarkArray,MaskHandler::$const_mobile);
 // 密文检索摘要生成
 $addressDigest = $secretClient->generateEncryptSearchDigest($kdtId,"华泰创业园5号楼2楼217室");
 
@@ -156,7 +156,7 @@ $addressDigest = $secretClient->generateEncryptSearchDigest($kdtId,"华泰创业
 | 身份证脱敏           | 身份证号信息脱敏：展示前2位，后4位	              | 13******0630|
 | 手机脱敏             | 手机号的信息脱敏：展示前3，后4，其他使用\*代替	      | 135****3263|
 
-脱敏类型: ADDRESS 地址,BANK_CARD 银行卡,NAME 中文名,EMAIL 邮箱,COMPANY_NAME 企业名称,ID_CARD 身份证,MOBILE 手机号
+脱敏类型: MaskHandler::$const_address 地址,MaskHandler::$const_bank_card 银行卡,MaskHandler::$const_name 中文名,MaskHandler::$const_email 邮箱,MaskHandler::$const_company_name 企业名称,MaskHandler::$const_id_card 身份证,MaskHandler::$const_mobile 手机号
 
 #### 4.2 密文检索:
 
