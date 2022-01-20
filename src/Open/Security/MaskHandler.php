@@ -106,7 +106,7 @@ class MaskHandler
             if($length < 6) {
                 return $idCard;
             }
-            return MaskHandler::desensitize($idCard,$length, 4,$length - 5);
+            return MaskHandler::desensitize($idCard,$length, 2,$length - 5);
         }
         return $idCard;
     }
