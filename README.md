@@ -136,6 +136,10 @@ $batchEncryptIsEncrypt = $secretClient->batchIsEncrypt($batchEncryptArray);
 // 单项解密并脱敏 如果是密文则解密脱敏，明文直接脱敏
 // 脱敏类型: ADDRESS 地址,BANK_CARD 银行卡,NAME 中文名,EMAIL 邮箱,COMPANY_NAME 企业名称,ID_CARD 身份证,MOBILE 手机号
 $markAddress = $secretClient->singleDecryptMask($kdtId,"华泰创业园5号楼2楼217室",'ADDRESS');
+// 批量解密并脱敏 如果是密文则解密脱敏，明文直接脱敏
+// 脱敏类型: ADDRESS 地址,BANK_CARD 银行卡,NAME 中文名,EMAIL 邮箱,COMPANY_NAME 企业名称,ID_CARD 身份证,MOBILE 手机号
+$batchDncryptMarkArray = array("18736955554","18736955555","18736955556");
+$batchMarkMobileRel = $secretClient->batchDecryptMask($kdtId,$mobile,'MOBILE');
 // 密文检索摘要生成
 $addressDigest = $secretClient->generateEncryptSearchDigest($kdtId,"华泰创业园5号楼2楼217室");
 
