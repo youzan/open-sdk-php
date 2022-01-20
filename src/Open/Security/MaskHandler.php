@@ -35,7 +35,11 @@ class MaskHandler
      */
     public static function maskBankCard($bankCard) {
         if(!empty($bankCard)) {
-            return MaskHandler::desensitize($bankCard, 2, 4);
+            $length = mb_strlen($bankCard);
+            if($length <= 6) {
+                return $bankCard;
+            }
+            return MaskHandler::desensitize($bankCard, $length,2, $length - 5);
         }
         return $bankCard;
     }
@@ -46,7 +50,11 @@ class MaskHandler
      */
     public static function maskName($name) {
         if(!empty($name)) {
-            return MaskHandler::desensitize($name, 1, 2);
+            $length = iconv_strlen($name);
+            if($length <= 1) {
+                return $name;
+            }
+            return MaskHandler::desensitize($name,$length, 1, $length-1);
         }
         return $name;
     }
@@ -61,7 +69,11 @@ class MaskHandler
            if($lastAtIndex <= 1) {
                return $email;
            }
-           return MaskHandler::desensitize($email, 2, strlen($email) - $lastAtIndex + 1);
+           $length = mb_strlen($email);
+           if($length <= $lastAtIndex) {
+               return $email;
+           }
+           return MaskHandler::desensitize($email,$length,2,  $lastAtIndex - 1);
         }
         return $email;
     }
@@ -72,10 +84,14 @@ class MaskHandler
      */
     public static function maskCompanyName($companyName) {
         if(!empty($companyName)) {
-            if(iconv_strlen($companyName) < 6) {
+            $length = iconv_strlen($companyName);
+            if($length < 6) {
                 return $companyName;
             }
-            return MaskHandler::desensitize($companyName, 4, (iconv_strlen($companyName) - 6));
+            $start = mb_substr($companyName,0,4);
+            $end = mb_substr($companyName,$length - 2,2);
+            $fill = "****";
+            return $start.$fill.$end;
         }
         return $companyName;
     }
@@ -86,10 +102,11 @@ class MaskHandler
      */
     public static function maskIdCard($idCard) {
         if(!empty($idCard)) {
-            if(strlen($idCard) < 6) {
+            $length = mb_strlen($idCard);
+            if($length < 6) {
                 return $idCard;
             }
-            return MaskHandler::desensitize($idCard, 4, (strlen($idCard)-6));
+            return MaskHandler::desensitize($idCard,$length, 4,$length - 5);
         }
         return $idCard;
     }
@@ -100,10 +117,11 @@ class MaskHandler
      */
     public static function maskMobile($mobile) {
         if(!empty($mobile)) {
-            if(strlen($mobile) < 7) {
+            $length = mb_strlen($mobile);
+            if($length < 7) {
                 return $mobile;
             }
-            return MaskHandler::desensitize($mobile, 3, strlen($mobile)-7);
+            return MaskHandler::desensitize($mobile, $length,3, $length - 5);
         }
         return $mobile;
     }
@@ -111,19 +129,19 @@ class MaskHandler
 
 
 
-   private static function desensitize($string, $start = 0, $length = 0){
+   private static function desensitize($string,$lenth, $start = 0, $end = 0){
        $replace = self::star;
-       if(empty($string) || empty($length) || empty($replace)) {
+       if(empty($string)) {
             return $string;
         }
-        $end = $start + $length;
-        $strlen = mb_strlen($string);
         $str_arr = array();
-        for($i=0; $i<$strlen; $i++) {
-            if($i>=$start && $i<$end)
+        for($i=0; $i<$lenth; $i++) {
+            if($i>=$start && $i<=$end){
                 $str_arr[] = self::star;
-            else
+            }
+            else {
                 $str_arr[] = mb_substr($string, $i, 1);
+            }
         }
         return implode('',$str_arr);
     }

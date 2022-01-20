@@ -32,6 +32,9 @@ class HttpSecretCache
         $secretCacheInitMap = array();
         $jsonMapper = new DataSecurityJsonMapper();
         $clientConfig = $this->querySecret(null,$jsonMapper);
+        if($clientConfig == null) {
+            return;
+        }
         $secretKeyInfoList = $clientConfig->getSecretKeyInfoList();
         if(empty($secretKeyInfoList)) {
             return;
@@ -57,6 +60,9 @@ class HttpSecretCache
         $secretQueryRequest = new SecretKeyQueryRequest($this->securityData->getClientId(),$kdtId,$timestamp,$this->securityData->getClientSecret());
 //        $secretConfigResult = $this->secretInvoker->invoke(json_encode($secretQueryRequest));
         $secretConfigResult = $this->secretInvoker->invoke($secretQueryRequest);
+        if($secretConfigResult == null || $secretConfigResult->getData() == null) {
+            return null;
+        }
         return $jsonMapper->map($secretConfigResult->getData(),new ClientEncryptConfig());
     }
 
