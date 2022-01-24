@@ -3,12 +3,17 @@
 
 namespace Youzan\Open\Security;
 
+use Youzan\Open\Http;
+
 class HttpsClient
 {
 
 
+    public static function postJson($requestURL,$param) {
+        return Http::post($requestURL,$param);
+    }
 
-    public static function postJson($requestURL, $param) {
+    public static function directJostJson($requestURL, $param) {
 
         $response = '';
         $hasConn = False;
