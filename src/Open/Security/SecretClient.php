@@ -20,19 +20,23 @@ class SecretClient
 {
 
     private $openClientSecretServer;
-    private $env;
     static $secretClient;
 
-    public static function getnstance($clientId,$clientSecret) {
+    public static function getInstance($clientId,$clientSecret) {
         if(null == SecretClient::$secretClient) {
-            SecretClient::$secretClient = new SecretClient($clientId,$clientSecret);
+            SecretClient::$secretClient = new SecretClient($clientId,$clientSecret,null);
+        }
+        return SecretClient::$secretClient;
+    }
+    public static function getQaInstance($clientId,$clientSecret) {
+        if(null == SecretClient::$secretClient) {
+            SecretClient::$secretClient = new SecretClient($clientId,$clientSecret,new EnvQaUrl());
         }
         return SecretClient::$secretClient;
     }
 
-    public function __construct($clientId,$clientSecret)
+    public function __construct($clientId,$clientSecret,$env)
     {
-        $env = new EnvProdUrl();
         $this->construct($clientId,$clientSecret,$env);
     }
 
