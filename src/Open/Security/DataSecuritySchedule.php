@@ -14,10 +14,8 @@ class DataSecuritySchedule
             if(null != $httpSecretCache && SecurityDataTimer::compareAndSwapRefesh()) {
                 $httpSecretCache->refreshAll();
             }
-        }catch (\Throwable $e) {
-            // 日志打印
-            echo "系统异常".$e->getMessage();
-            var_dump($e->getMessage());
+        }catch (\Exception $e) {
+            throw $e;
         }
 
 

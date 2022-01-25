@@ -70,8 +70,7 @@ class HttpSecretCache
         try{
             $this->doInit();
         }catch (\Exception $e) {
-            // 日志打印
-            var_dump($e);
+            throw $e;
         }
     }
 
