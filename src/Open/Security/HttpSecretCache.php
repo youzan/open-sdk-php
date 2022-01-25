@@ -13,7 +13,7 @@ class HttpSecretCache
     private  $securityData;
     private  $secretInvoker;
     private  $encryptType = 1;
-    public $secretCacheMap;
+    private $secretCacheMap;
 
 
     public function __construct($securityData,$env)
@@ -70,8 +70,7 @@ class HttpSecretCache
         try{
             $this->doInit();
         }catch (\Exception $e) {
-            // 日志打印
-            var_dump($e);
+            throw $e;
         }
     }
 

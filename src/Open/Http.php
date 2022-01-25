@@ -21,7 +21,7 @@ class Http
             $urlAndHeaders['url'],
             self::buildOptional($params, $files, $urlAndHeaders['headers'])
         );
-
+        print_r($response);
         return $response->getBody()->getContents();
     }
 

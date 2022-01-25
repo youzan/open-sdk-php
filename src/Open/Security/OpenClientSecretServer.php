@@ -32,7 +32,7 @@ class OpenClientSecretServer
      * @param $source   必填 加密内容
      */
     public function singleEncrypt($kdtId,$source) {
-        DataSecuritySchedule::refreshCache($this->secretCache);
+//        DataSecuritySchedule::refreshCache($this->secretCache);
         $kdtId = $this->convertKdtId($kdtId);
         $secretData = null;
         if(empty($source) || $this->singleIsEncrypt($source) || null == ($secretData = $this->secretCache->getNewestAndRefresh($kdtId))) {
@@ -51,7 +51,7 @@ class OpenClientSecretServer
      * @return array
      */
     public function batchEncrypt($kdtId,$sources) {
-        DataSecuritySchedule::refreshCache($this->secretCache);
+//        DataSecuritySchedule::refreshCache($this->secretCache);
         if(null == $sources) {
             return null;
         }
@@ -71,7 +71,7 @@ class OpenClientSecretServer
      * @param $source   必填 解密内容
      */
     public function singleDecrypt($kdtId,$source) {
-        DataSecuritySchedule::refreshCache($this->secretCache);
+//        DataSecuritySchedule::refreshCache($this->secretCache);
         $kdtId = $this->convertKdtId($kdtId);
         $secretData = null;
         if(empty($source)
@@ -95,7 +95,7 @@ class OpenClientSecretServer
      * @return \Ds\Map|null
      */
     public function batchDecrypt($kdtId,$sources) {
-        DataSecuritySchedule::refreshCache($this->secretCache);
+//        DataSecuritySchedule::refreshCache($this->secretCache);
         if(null == $sources) {
             return null;
         }
