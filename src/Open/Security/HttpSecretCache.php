@@ -13,7 +13,7 @@ class HttpSecretCache
     private  $securityData;
     private  $secretInvoker;
     private  $encryptType = 1;
-    public $secretCacheMap;
+    private $secretCacheMap;
 
 
     public function __construct($securityData,$env)
