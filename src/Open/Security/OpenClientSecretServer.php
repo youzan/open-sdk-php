@@ -16,7 +16,7 @@ use Youzan\Open\Security\Salsa20\Salsa20;
 
 class OpenClientSecretServer
 {
-    const separator = '$';
+    static $separator = '$';
 
     private $secretCache;
 
@@ -119,7 +119,7 @@ class OpenClientSecretServer
         if(empty($source) || strlen($source) < 4) {
             return false;
         }
-        $stirs = explode(self::separator,$source);
+        $stirs = explode(self::$separator,$source);
 
         $encryptArray = array_filter($stirs);
         $length = count($encryptArray);
@@ -246,18 +246,18 @@ class OpenClientSecretServer
 
 
     private function spliceEncryptContext($encryptContext,$version) {
-        return self::separator . $encryptContext . self::separator . $version . self::separator;
+        return self::$separator . $encryptContext . self::$separator . $version . self::$separator;
     }
 
 
     private function getEncryptVersion($source) {
-        $stirs = explode(self::separator,$source);
+        $stirs = explode(self::$separator,$source);
         $stirs = array_filter($stirs);
         return $stirs[2];
     }
 
     private function getOriginEncryptData($source) {
-        $stirs = explode(self::separator,$source);
+        $stirs = explode(self::$separator,$source);
         $stirs = array_filter($stirs);
         return $stirs[1];
     }
