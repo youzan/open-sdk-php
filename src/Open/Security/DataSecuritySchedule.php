@@ -15,7 +15,9 @@ class DataSecuritySchedule
                 $httpSecretCache->refreshAll();
             }
         }catch (\Exception $e) {
-            throw $e;
+            /**
+             * 定时拉取秘钥出现异常
+             */
         }
 
 

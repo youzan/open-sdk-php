@@ -6,17 +6,16 @@ namespace Youzan\Open\Security;
 include "SecretType.php";
 include "Aes.php";
 include 'MaskHandler.php';
-require_once dirname(__FILE__) . '/salsa20/FieldElement.php';
-require_once dirname(__FILE__) . '/salsa20/Salsa20.php';
+include "./salsa20/FieldElement.php";
+include "./salsa20/Salsa20.php";
 
-use function Sodium\add;
 use Youzan\Open\Security\Salsa20\FieldElement;
 use Youzan\Open\Security\Salsa20\Salsa20;
 
 
 class OpenClientSecretServer
 {
-    static $separator = '$';
+    public static $separator = '$';
 
     private $secretCache;
 
@@ -32,7 +31,7 @@ class OpenClientSecretServer
      * @param $source   必填 加密内容
      */
     public function singleEncrypt($kdtId,$source) {
-//        DataSecuritySchedule::refreshCache($this->secretCache);
+        DataSecuritySchedule::refreshCache($this->secretCache);
         $kdtId = $this->convertKdtId($kdtId);
         $secretData = null;
         if(empty($source) || $this->singleIsEncrypt($source) || null == ($secretData = $this->secretCache->getNewestAndRefresh($kdtId))) {
@@ -51,7 +50,7 @@ class OpenClientSecretServer
      * @return array
      */
     public function batchEncrypt($kdtId,$sources) {
-//        DataSecuritySchedule::refreshCache($this->secretCache);
+        DataSecuritySchedule::refreshCache($this->secretCache);
         if(null == $sources) {
             return null;
         }
@@ -71,7 +70,7 @@ class OpenClientSecretServer
      * @param $source   必填 解密内容
      */
     public function singleDecrypt($kdtId,$source) {
-//        DataSecuritySchedule::refreshCache($this->secretCache);
+        DataSecuritySchedule::refreshCache($this->secretCache);
         $kdtId = $this->convertKdtId($kdtId);
         $secretData = null;
         if(empty($source)
@@ -95,7 +94,7 @@ class OpenClientSecretServer
      * @return \Ds\Map|null
      */
     public function batchDecrypt($kdtId,$sources) {
-//        DataSecuritySchedule::refreshCache($this->secretCache);
+        DataSecuritySchedule::refreshCache($this->secretCache);
         if(null == $sources) {
             return null;
         }
