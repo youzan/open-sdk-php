@@ -6,8 +6,8 @@ namespace Youzan\Open\Security;
 include "SecretType.php";
 include "Aes.php";
 include 'MaskHandler.php';
-include "./salsa20/FieldElement.php";
-include "./salsa20/Salsa20.php";
+include "salsa20/FieldElement.php";
+include "salsa20/Salsa20.php";
 
 use Youzan\Open\Security\Salsa20\FieldElement;
 use Youzan\Open\Security\Salsa20\Salsa20;
